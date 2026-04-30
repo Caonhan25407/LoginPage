@@ -32,7 +32,7 @@ $('#btnShowLogOut').click(function() {
     window.location.href = "login.html"; 
 });
 
-//Đăng nhập 
+//2. Đăng nhập 
 const loginEmailElement = document.getElementById('loginEmail');
 const loginPasswordElement = document.getElementById('loginPassword');
 const btnLogin = document.getElementById('btnLogin');
@@ -44,7 +44,6 @@ btnLogin.addEventListener('click', (e) => {
     const loginPassword = loginPasswordElement.value;
 
     if(loginEmail === "user@gmail.com" && loginPassword === "123456") {
-        alert('Sign in successly');
         window.location.href = "/pages/index.html";
     } else {
         loginEmailElement.style.borderColor = 'red';
@@ -52,5 +51,4 @@ btnLogin.addEventListener('click', (e) => {
     }
     console.log(loginEmailElement.value, loginPasswordElement.value);
 });
-
 

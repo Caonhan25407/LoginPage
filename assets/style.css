@@ -81,13 +81,14 @@ a {
     padding: 0.5rem;
     color:#000000;
     background-color: aliceblue;
+    text-align: left;
+    justify-content: flex-start;
 }
 
 .btn {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
-    
 }
 
 .btn button {
