@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="stylesheet" href="/assets/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container" id="loginBox">
+            <div class="form-login">
+                <h1>Sign in</h1>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" placeholder="Email" id="loginEmail" required>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="password" placeholder="Password" id="loginPassword" required>
+                        <div class="re-pass-block">
+                            <label>
+                                <input type="checkbox"> Remember password
+                            </label>
+                            <p class="forgot-pass">
+                                <a href="#" class="pass">Forgot password?</a>
+                            </p>
+                        </div>
+                    </div>
+                        
+                    <div>
+                        <button type="submit" id="btnLogin">Sign in</button>
+                    </div>
+                </form>
+            </div>
+
+            <p class="toggle">Don't have an account?
+                <a href="#" id="btnShowRegister">Sign up</a>
+            </p>
+        </div>
+
+        <div class="register-container" id="registerBox" style="display: none;">
+            <div class="form-register">
+                <h1>Sign up</h1>
+                <form id="registerForm">
+                    <div class="input-group">
+                        <input type="text" placeholder="Name" id="registerName">
+                    </div>
+                    <div class="input-group">
+                        <input type="email" placeholder="Email" id="registerMail" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="Password" id="registerPassword" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="Confirm password" id="registerConfirmPassword" required>
+                    </div>
+                    <div class="btn-block">
+                        <button type="submit" class="btn">Sign up</button>
+                    </div>
+                </form>
+            </div>
+            <p class="toggle">Already have an account?
+                <a href="#" id="btnShowLogin">Sign in</a>
+            </p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

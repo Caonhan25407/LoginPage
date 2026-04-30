@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav">
+            <a href="#home">Home</a>
+            <a href="#calculator">Calculator</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <section class="logOut" id="logOut">
+            <button type="submit" id="btnShowLogOut">Sign out</button>
+        </section>
+    </div>
+
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <input type="text" class="display" id="display" disabled>
+            <div class="btn">              
+                <button onclick="calc.appendNumber('7')" class="btn-number">7</button>
+                <button onclick="calc.appendNumber('8')" class="btn-number">8</button>
+                <button onclick="calc.appendNumber('9')" class="btn-number">9</button>
+                <button onclick="calc.appendOperator('/')" class="btn-operation">/</button>
+                <button onclick="calc.appendNumber('4')" class="btn-number">4</button>
+                <button onclick="calc.appendNumber('5')" class="btn-number">5</button>
+                <button onclick="calc.appendNumber('6')" class="btn-number">6</button>
+                <button onclick="calc.appendOperator('*')" class="btn-operation">*</button>
+                <button onclick="calc.appendNumber('1')" class="btn-number">1</button>
+                <button onclick="calc.appendNumber('2')" class="btn-number">2</button>
+                <button onclick="calc.appendNumber('3')" class="btn-number">3</button>
+                <button onclick="calc.appendOperator('-')" class="btn-operation">-</button>
+                <button onclick="calc.appendNumber('0')" class="btn-number">0</button>
+                <button onclick="calc.deleteDisplay()" class="btn-delete">Del</button>
+                <button onclick="calc.appendNumber('.')" class="btn-number">.</button> 
+                <button onclick="calc.appendOperator('+')" class="btn-operation">+</button>
+                <button onclick="calc.clearDisplay()" class="btn-clear">C</button>
+                <button onclick="calc.calculate()" class="btn-calculate">=</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/calculate.js"></script>
+</body>
+</html>

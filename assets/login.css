@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: radial-gradient(at top left, #0066ff, #fcff66);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    background-color: white;
+    width: 30rem; 
+    height: 35rem;
+    padding: 3rem 2.5rem; 
+    border-radius: 1rem;  
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem; 
+    margin-bottom: 2rem; 
+    color: #333;
+    font-family: 'Audiowide';
+}
+
+p, a {
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+a {
+    color:#0066ff;
+    font-weight: 600;
+}
+.input-group {
+    padding: 0.5rem 0;
+    text-align: left; 
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+    width: 100%; 
+    height: 3rem;
+    padding: 0 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+}
+
+input:focus {
+    border-color: #6ca7ff;
+}
+
+.re-pass-block {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 1rem 0;
+}
+
+button {
+    background-color: #237afd;
+    color: white;
+}
+
+.btn-block {
+    padding: 0.5rem 0;
+}
+
+.toggle {
+    padding: 1rem 0;
+}
