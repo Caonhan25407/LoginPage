@@ -84,3 +84,38 @@ button {
 .toggle {
     padding: 1rem 0;
 }
+
+
+@media (max-width: 740px) {
+    .container {
+        background-color: white;
+        width: 23rem; 
+        height: 28rem;
+        padding: 2rem 1.2rem; 
+        border-radius: 1rem;  
+    }
+
+    h1 {
+        font-size: 2rem; 
+        margin-bottom: 1.5rem;
+    }
+
+    p, a, label {
+        font-size: 0.9rem;
+        text-decoration: none;
+    }
+
+    a {
+        color:#0066ff;
+        font-weight: 500;
+    }
+    
+    .input-group {
+        padding: 0.2rem 0;
+        text-align: left; 
+    }
+
+    .btn-block {
+        padding: 0.2rem 0;
+    }
+}

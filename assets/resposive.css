@@ -1,0 +1,26 @@
+@media (max-width: 740px) {
+    #home,
+    #calculator,
+    #contact {
+        min-height: 100vh;
+    }
+
+    a {
+        font-size: 1rem;
+    }
+
+    .nav {
+        gap: 2rem;
+    }
+
+    .container {
+        width: 23rem; 
+        height: 35rem;
+        padding: 1rem; 
+    }
+
+    .display,
+    .btn button {
+        font-size: 1.5rem;
+    }
+}
