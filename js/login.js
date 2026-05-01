@@ -29,7 +29,7 @@ $('#btnShowLogin').click(function() {
 });
 
 $('#btnShowLogOut').click(function() {
-    window.location.href = "./pages/login.html"; 
+    window.location.href = "./login.html"; 
 });
 
 //2. Đăng nhập 
@@ -44,7 +44,7 @@ btnLogin.addEventListener('click', (e) => {
     const loginPassword = loginPasswordElement.value;
 
     if(loginEmail === "user@gmail.com" && loginPassword === "123456") {
-        window.location.href = "../index.html";
+        window.location.href = "./index.html";
     } else {
         loginEmailElement.style.borderColor = 'red';
         loginPasswordElement.style.borderColor = 'red';
