@@ -77,6 +77,8 @@
 //     },
 // };
 
+
+//1. Calc
 const display = document.getElementById("display");
 
 const calc = {
