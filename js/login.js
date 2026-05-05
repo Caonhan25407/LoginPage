@@ -164,8 +164,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     registerForm.addEventListener('submit', () => {
         const name = document.getElementById('registerName').value;
         const email = document.getElementById('registerMail').value.trim();
-        const password = document.getElementById('registerPassword').value;
-        const confirm = document.getElementById('registerConfirmPassword').value;
+        const password = document.getElementById('registerPassword').value.trim();
+        const confirm = document.getElementById('registerConfirmPassword').value.trim();
 
         // validate
         let isValid = true;
@@ -204,9 +204,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         // thêm user
-        users.push({ name, email, password });
-        localStorage.setItem('users', JSON.stringify(data.users));
-        alert("Đăng ký thành công!");
+        // users.push({ name, email, password });
+        // localStorage.setItem('users', JSON.stringify(users));
+        // alert("Đăng ký thành công!");
+
+        const newUser = {
+        id: Date.now(),
+        name,
+        email,
+        password,
+        role: "user",
+        isActive: true,
+        createdAt: new Date().toISOString()
+    };
+
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
 
         // chuyển về login
         registerBox.style.display = 'none';
