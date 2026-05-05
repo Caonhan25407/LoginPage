@@ -15,10 +15,12 @@
                 <form id="loginForm">
                     <div class="input-group">
                         <input type="email" placeholder="Email" id="loginEmail" required>
+                        <small id="loginErrorEmail" style="color:red;"></small>
                     </div>
 
                     <div class="input-group">
                         <input type="password" placeholder="Password" id="loginPassword" required>
+                        <small id="errorPassword" style="color:red;"></small>
                         <div class="re-pass-block">
                             <label>
                                 <input type="checkbox"> Remember password
@@ -46,9 +48,12 @@
                 <form id="registerForm">
                     <div class="input-group">
                         <input type="text" placeholder="Name" id="registerName">
+                        <small id="registerErrorNameForm" style="color:red;"></small>
                     </div>
                     <div class="input-group">
-                        <input type="email" placeholder="Email" id="registerMail" required>
+                        <input type="email" placeholder="Email" id="registerMail">
+                        <small id="registerErrorEmailForm" style="color:red;"></small>
+                        <small id="registerErrorEmail" style="color:red;"></small>
                     </div>
                     <div class="input-group">
                         <input type="password" placeholder="Password" id="registerPassword" required>
