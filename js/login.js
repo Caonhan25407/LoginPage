@@ -15,22 +15,22 @@
 //     loginBox.style.display = 'block';
 // });
 
-// 1. Chuyển giữa login và register(JQuery)
-$('#btnShowRegister').click(function() {
-    $('#loginBox').fadeOut(300, function() {
-        $('#registerBox').fadeIn(300);
-    });
-});
+// // 1. Chuyển giữa login và register(JQuery)
+// $('#btnShowRegister').click(function() {
+//     $('#loginBox').fadeOut(300, function() {
+//         $('#registerBox').fadeIn(300);
+//     });
+// });
 
-$('#btnShowLogin').click(function() {
-    $('#registerBox').fadeOut(300, function() {
-        $('#loginBox').fadeIn(300);
-    });
-});
+// $('#btnShowLogin').click(function() {
+//     $('#registerBox').fadeOut(300, function() {
+//         $('#loginBox').fadeIn(300);
+//     });
+// });
 
-$('#btnShowLogOut').click(function() {
-    window.location.href = "./login.html"; 
-});
+// $('#btnShowLogOut').click(function() {
+//     window.location.href = "./login.html"; 
+// });
 
 //2. Đăng nhập 
 // const loginEmailElement = document.getElementById('loginEmail');
@@ -52,85 +52,191 @@ $('#btnShowLogOut').click(function() {
 //     console.log(loginEmailElement.value, loginPasswordElement.value);
 // });
 
+// // REGISTER
+// const registerForm = document.getElementById('registerForm');
+// registerForm.addEventListener('submit', () => {
+//     const name = document.getElementById('registerName').value;
+//     const email = document.getElementById('registerMail').value.trim();
+//     const password = document.getElementById('registerPassword').value;
+//     const confirm = document.getElementById('registerConfirmPassword').value;
 
-// REGISTER
-const registerForm = document.getElementById('registerForm');
-registerForm.addEventListener('submit', () => {
-    const name = document.getElementById('registerName').value;
-    const email = document.getElementById('registerMail').value.trim();
-    const password = document.getElementById('registerPassword').value;
-    const confirm = document.getElementById('registerConfirmPassword').value;
+//     // validate
+//     let isValid = true;
+//     const errorName = document.getElementById('registerErrorNameForm');
+//     const errorEmail = document.getElementById('registerErrorEmailForm');
+//     const errorExists = document.getElementById('registerErrorEmail');
+//     const errorConfirmPassword = document.getElementById('registerErrorConfirmPassword');
 
-    // validate
-    let isValid = true;
-    const errorName = document.getElementById('registerErrorNameForm');
-    const errorEmail = document.getElementById('registerErrorEmailForm');
-    const errorExists = document.getElementById('registerErrorEmail');
+//     errorName.innerText = "";
+//     errorEmail.innerText = "";
+//     errorExists.innerText = "";
 
-    errorName.innerText = "";
-    errorEmail.innerText = "";
-    errorExists.innerText = "";
+//     if (!name) {
+//         errorName.innerText = "Please enter your name!";
+//         isValid = false;
+//     }
 
-    if (!name) {
-        errorName.innerText = "Please enter your name!";
-        isValid = false;
+//     if (!email) {
+//         errorEmail.innerText = "Please enter your email!";
+//         isValid = false;
+//     }
+
+//     if (password !== confirm) {
+//         errorConfirmPassword.innerText = "Please enter confirm password!";
+//         isValid = false;
+//     }
+
+//     if (!isValid) return;
+
+//     let users = JSON.parse(localStorage.getItem('users')) || [];
+//     // check trùng email
+//     const exists = users.find(u => u.email === email);
+//     if (exists) {
+//         document.getElementById('registerErrorEmail').innerText = "Email exists";
+//         return;
+//     }
+
+//     // thêm user
+//     users.push({ name, email, password });
+//     localStorage.setItem('users', JSON.stringify(users));
+//     alert("Đăng ký thành công!");
+
+//     // chuyển về login
+//     registerBox.style.display = 'none';
+//     loginBox.style.display = 'block';
+// });
+
+// // LOGIN
+// const loginForm = document.getElementById('loginForm');
+
+// loginForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+//     const email = document.getElementById('loginEmail').value;
+//     const password = document.getElementById('loginPassword').value;
+
+//     let users = JSON.parse(localStorage.getItem('users')) || [];
+
+//     const user = users.find(
+//         u => u.email === email && u.password === password
+//     );
+
+//     if (user) {
+//         // lưu trạng thái login
+//         localStorage.setItem('currentUser', JSON.stringify(user));
+//         alert("Đăng nhập thành công!");
+//         window.location.href = "./index.html";
+//     } else {
+//         document.getElementById('loginEmail').style.borderColor = 'red';
+//         document.getElementById('loginPassword').style.borderColor = 'red';
+//         document.getElementById('errorPassword').innerText = "Incorrect email or password";
+//     }
+// });
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    //1. LOAD users.json
+    if (!localStorage.getItem('users')) {
+        const res = await fetch('./users.json');
+        const data = await res.json();
+        localStorage.setItem('users', JSON.stringify(data.users));
     }
 
-    if (!email) {
-        errorEmail.innerText = "Please enter your email!";
-        isValid = false;
-    }
+    // 2. Chuyển giữa login và register(JQuery)
+    $('#btnShowRegister').click(function() {
+        $('#loginBox').fadeOut(300, function() {
+            $('#registerBox').fadeIn(300);
+        });
+    });
 
-    if (password !== confirm) {
-        isValid = false;
-    }
+    $('#btnShowLogin').click(function() {
+        $('#registerBox').fadeOut(300, function() {
+            $('#loginBox').fadeIn(300);
+        });
+    });
 
-    if (!isValid) return;
+    $('#btnShowLogOut').click(function() {
+        window.location.href = "./login.html"; 
+    });
 
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    // check trùng email
-    const exists = users.find(u => u.email === email);
-    if (exists) {
-        document.getElementById('registerErrorEmail').innerText = "Email exists";
-        return;
-    }
+    //3. Register
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', () => {
+        const name = document.getElementById('registerName').value;
+        const email = document.getElementById('registerMail').value.trim();
+        const password = document.getElementById('registerPassword').value;
+        const confirm = document.getElementById('registerConfirmPassword').value;
 
-    // thêm user
-    users.push({ name, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-    alert("Đăng ký thành công!");
+        // validate
+        let isValid = true;
+        const errorName = document.getElementById('registerErrorNameForm');
+        const errorEmail = document.getElementById('registerErrorEmailForm');
+        const errorExists = document.getElementById('registerErrorEmail');
+        const errorConfirmPassword = document.getElementById('registerErrorConfirmPassword');
 
-    // chuyển về login
-    registerBox.style.display = 'none';
-    loginBox.style.display = 'block';
+        errorName.innerText = "";
+        errorEmail.innerText = "";
+        errorExists.innerText = "";
+
+        if (!name) {
+            errorName.innerText = "Please enter your name!";
+            isValid = false;
+        }
+
+        if (!email) {
+            errorEmail.innerText = "Please enter your email!";
+            isValid = false;
+        }
+
+        if (password !== confirm) {
+            errorConfirmPassword.innerText = "Please enter confirm password!";
+            isValid = false;
+        }
+
+        if (!isValid) return;
+
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        // check trùng email
+        const exists = users.find(u => u.email === email);
+        if (exists) {
+            document.getElementById('registerErrorEmail').innerText = "Email exists";
+            return;
+        }
+
+        // thêm user
+        users.push({ name, email, password });
+        localStorage.setItem('users', JSON.stringify(data.users));
+        alert("Đăng ký thành công!");
+
+        // chuyển về login
+        registerBox.style.display = 'none';
+        loginBox.style.display = 'block';
+    });
+
+    //4. Login
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        const user = users.find(
+            u => u.email === email && u.password === password
+        );
+
+        if (user) {
+            // lưu trạng thái login
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            alert("Đăng nhập thành công!");
+            window.location.href = "./index.html";
+        } else {
+            document.getElementById('loginEmail').style.borderColor = 'red';
+            document.getElementById('loginPassword').style.borderColor = 'red';
+            document.getElementById('errorPassword').innerText = "Incorrect email or password";
+        }
+    });
 });
-
-// LOGIN
-const loginForm = document.getElementById('loginForm');
-
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-
-    const user = users.find(
-        u => u.email === email && u.password === password
-    );
-
-    if (user) {
-        // lưu trạng thái login
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        alert("Đăng nhập thành công!");
-        window.location.href = "./index.html";
-    } else {
-        document.getElementById('loginEmail').style.borderColor = 'red';
-        document.getElementById('loginPassword').style.borderColor = 'red';
-        document.getElementById('errorPassword').innerText = "Incorrect email or password";
-
-    }
-});
-
-
