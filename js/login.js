@@ -172,11 +172,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         const errorName = document.getElementById('registerErrorNameForm');
         const errorEmail = document.getElementById('registerErrorEmailForm');
         const errorExists = document.getElementById('registerErrorEmail');
+        const errorPassword = document.getElementById('registerErrorPassword');
         const errorConfirmPassword = document.getElementById('registerErrorConfirmPassword');
+
+        const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/;
 
         errorName.innerText = "";
         errorEmail.innerText = "";
         errorExists.innerText = "";
+        errorPassword.innerText = "";
+        errorConfirmPassword.innerText = "";
 
         if (!name) {
             errorName.innerText = "Please enter your name!";
@@ -188,8 +193,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             isValid = false;
         }
 
-        if (password !== confirm) {
-            errorConfirmPassword.innerText = "Please enter confirm password!";
+        if(!password) {
+            errorPassword.innerText = "Please enter your password!";
+            isValid = false;
+        } else if(!passwordRules.test(password)) {
+            errorPassword.innerText = "Password must contain A-Z, a-z, number and >=6 chars!";
+            isValid = false;
+        }
+
+        if (password && confirm && password !== confirm) {
+            errorConfirmPassword.innerText = "Passwords do not match!";
             isValid = false;
         }
 
@@ -203,11 +216,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        // thêm user
-        // users.push({ name, email, password });
-        // localStorage.setItem('users', JSON.stringify(users));
-        // alert("Đăng ký thành công!");
-
         const newUser = {
         id: Date.now(),
         name,
@@ -215,20 +223,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         password,
         role: "user",
         isActive: true,
-        createdAt: new Date().toISOString()
     };
 
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
-
-        // chuyển về login
         registerBox.style.display = 'none';
         loginBox.style.display = 'block';
     });
 
     //4. Login
     const loginForm = document.getElementById('loginForm');
-
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -236,10 +240,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const password = document.getElementById('loginPassword').value;
 
         let users = JSON.parse(localStorage.getItem('users')) || [];
-
-        const user = users.find(
-            u => u.email === email && u.password === password
-        );
+        const user = users.find(u => u.email === email && u.password === password);
 
         if (user) {
             // lưu trạng thái login

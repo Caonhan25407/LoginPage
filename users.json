@@ -6,7 +6,6 @@
       "password": "123456",
       "role": "admin",
       "isActive": true,
-      "createdAt": "2026-05-05T21:00:00Z"
     }
   ],
   "sessions": [],
