@@ -161,96 +161,100 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //3. Register
     const registerForm = document.getElementById('registerForm');
-    registerForm.addEventListener('submit', () => {
-        const name = document.getElementById('registerName').value;
-        const email = document.getElementById('registerMail').value.trim();
-        const password = document.getElementById('registerPassword').value.trim();
-        const confirm = document.getElementById('registerConfirmPassword').value.trim();
+        if (registerForm) {
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerMail').value.trim();
+                const password = document.getElementById('registerPassword').value.trim();
+                const confirm = document.getElementById('registerConfirmPassword').value.trim();
 
-        // validate
-        let isValid = true;
-        const errorName = document.getElementById('registerErrorNameForm');
-        const errorEmail = document.getElementById('registerErrorEmailForm');
-        const errorExists = document.getElementById('registerErrorEmail');
-        const errorPassword = document.getElementById('registerErrorPassword');
-        const errorConfirmPassword = document.getElementById('registerErrorConfirmPassword');
+                // validate
+                let isValid = true;
+                const errorName = document.getElementById('registerErrorNameForm');
+                const errorEmail = document.getElementById('registerErrorEmailForm');
+                const errorExists = document.getElementById('registerErrorEmail');
+                const errorPassword = document.getElementById('registerErrorPassword');
+                const errorConfirmPassword = document.getElementById('registerErrorConfirmPassword');
 
-        const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/;
+                const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/;
 
-        errorName.innerText = "";
-        errorEmail.innerText = "";
-        errorExists.innerText = "";
-        errorPassword.innerText = "";
-        errorConfirmPassword.innerText = "";
+                errorName.innerText = "";
+                errorEmail.innerText = "";
+                errorExists.innerText = "";
+                errorPassword.innerText = "";
+                errorConfirmPassword.innerText = "";
 
-        if (!name) {
-            errorName.innerText = "Please enter your name!";
-            isValid = false;
+                if (!name) {
+                    errorName.innerText = "Please enter your name!";
+                    isValid = false;
+                }
+
+                if (!email) {
+                    errorEmail.innerText = "Please enter your email!";
+                    isValid = false;
+                }
+
+                if(!password) {
+                    errorPassword.innerText = "Please enter your password!";
+                    isValid = false;
+                } else if(!passwordRules.test(password)) {
+                    errorPassword.innerText = "Password must contain A-Z, a-z, number and >=6 chars!";
+                    isValid = false;
+                }
+
+                if (password && confirm && password !== confirm) {
+                    errorConfirmPassword.innerText = "Passwords do not match!";
+                    isValid = false;
+                }
+
+                if (!isValid) return;
+
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                // check trùng email
+                const exists = users.find(u => u.email === email);
+                if (exists) {
+                    document.getElementById('registerErrorEmail').innerText = "Email exists";
+                    return;
+                }
+
+                const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                password,
+                role: "user",
+                isActive: true,
+            };
+
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                registerBox.style.display = 'none';
+                loginBox.style.display = 'block';
+            });
         }
-
-        if (!email) {
-            errorEmail.innerText = "Please enter your email!";
-            isValid = false;
-        }
-
-        if(!password) {
-            errorPassword.innerText = "Please enter your password!";
-            isValid = false;
-        } else if(!passwordRules.test(password)) {
-            errorPassword.innerText = "Password must contain A-Z, a-z, number and >=6 chars!";
-            isValid = false;
-        }
-
-        if (password && confirm && password !== confirm) {
-            errorConfirmPassword.innerText = "Passwords do not match!";
-            isValid = false;
-        }
-
-        if (!isValid) return;
-
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-        // check trùng email
-        const exists = users.find(u => u.email === email);
-        if (exists) {
-            document.getElementById('registerErrorEmail').innerText = "Email exists";
-            return;
-        }
-
-        const newUser = {
-        id: Date.now(),
-        name,
-        email,
-        password,
-        role: "user",
-        isActive: true,
-    };
-
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-        registerBox.style.display = 'none';
-        loginBox.style.display = 'block';
-    });
-
+         
     //4. Login
     const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
 
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
 
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email === email && u.password === password);
-
-        if (user) {
-            // lưu trạng thái login
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            alert("Đăng nhập thành công!");
-            window.location.href = "./index.html";
-        } else {
-            document.getElementById('loginEmail').style.borderColor = 'red';
-            document.getElementById('loginPassword').style.borderColor = 'red';
-            document.getElementById('errorPassword').innerText = "Incorrect email or password";
-        }
-    });
+            if (user) {
+                // lưu trạng thái login
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                alert("Đăng nhập thành công!");
+                window.location.href = "./index.html";
+            } else {
+                document.getElementById('loginEmail').style.borderColor = 'red';
+                document.getElementById('loginPassword').style.borderColor = 'red';
+                document.getElementById('errorPassword').innerText = "Incorrect email or password";
+            }
+        });
+    }      
 });

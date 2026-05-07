@@ -5,7 +5,7 @@
       "email": "admin@gmail.com",
       "password": "123456",
       "role": "admin",
-      "isActive": true,
+      "isActive": true
     }
   ],
   "sessions": [],

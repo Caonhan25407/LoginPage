@@ -15,6 +15,7 @@ body {
 
 #home,
 #calculator,
+#toDoList,
 #contact {
     min-height: 100vh;
 }
@@ -109,4 +110,8 @@ a {
 
 .btn button:hover {
     border: 2px solid;
+}
+
+.container1 {
+    padding: 10rem;
 }
